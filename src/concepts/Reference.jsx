@@ -5,7 +5,7 @@ export const Reference = () => {
 
 	return (
 		<>
-			<InputField inputRef={inputRef} />
+			<InputField ref={inputRef} />
 			<button
 				onClick={() => {
 					console.log(inputRef);
@@ -24,6 +24,6 @@ export const Reference = () => {
 	);
 };
 
-const InputField = forwardRef(({ inputRef }) => {
-	return <input ref={inputRef} type="text" defaultValue={""} />;
+const InputField = forwardRef((props, ref) => {
+	return <input ref={ref} type="text" defaultValue={""} />;
 });

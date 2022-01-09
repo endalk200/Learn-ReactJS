@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer, useRef } from "react";
+import { createContext, memo, useContext, useReducer, useRef } from "react";
 
 const reducer = (state, action) => {
 	switch (action.type) {
@@ -23,17 +23,20 @@ const CounterProvider = ({ children }) => {
 	return <CountContext.Provider value={[...countState]}>{children}</CountContext.Provider>;
 };
 
-export const ContextAPI = () => {
+export const ContextAPI = memo(() => {
 	// const countState = useReducer(reducer, { count: 0, incrementBy: 1 });
 
 	return (
 		<CounterProvider>
 			{/* <CountContext.Provider value={[...countState]}> */}
+			<h2 className="text-center" style={{ marginBlock: "0px" }}>
+				Context API
+			</h2>
 			<Child />
 			{/* </CountContext.Provider> */}
 		</CounterProvider>
 	);
-};
+});
 
 const Child = () => {
 	const [state, dispatch] = useContext(CountContext);
@@ -42,7 +45,6 @@ const Child = () => {
 
 	return (
 		<div className="text-center">
-			<h2 style={{ marginBlock: "0px" }}>Context API</h2>
 			<h1>Count: {state.count}</h1>
 			<input
 				type="number"
