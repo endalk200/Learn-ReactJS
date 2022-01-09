@@ -1,6 +1,7 @@
 import { Fragment, useContext } from "react";
 import { UserContext } from "./context";
-import { ProfileCard } from "./ProfileCard";
+import { Login } from "./Login";
+import { ProfilePage } from "./ProfilePage";
 import { UserContextProvider } from "./provider";
 
 const Page = () => {
@@ -10,7 +11,7 @@ const Page = () => {
 		<Fragment>
 			{state.isAuthenticated ? (
 				<Fragment>
-					<ProfileCard {...state.user} />
+					<ProfilePage {...state.user} />
 					<button
 						onClick={() => {
 							logout();
@@ -20,13 +21,7 @@ const Page = () => {
 				</Fragment>
 			) : (
 				<Fragment>
-					<h1 className="text-center">You must login first</h1>
-					<button
-						onClick={() => {
-							login({ username: "Endalk", password: "password" });
-						}}>
-						Login
-					</button>
+					<Login />
 				</Fragment>
 			)}
 		</Fragment>
